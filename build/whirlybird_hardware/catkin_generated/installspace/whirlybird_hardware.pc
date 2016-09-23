@@ -1,0 +1,8 @@
+prefix=/fsf/sky237/whirlybird_ws/install
+
+Name: whirlybird_hardware
+Description: Description of whirlybird_hardware
+Version: 0.0.0
+Cflags: 
+Libs: -L/fsf/sky237/whirlybird_ws/install/lib 
+Requires: 
