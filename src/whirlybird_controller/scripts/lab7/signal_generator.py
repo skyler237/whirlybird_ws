@@ -2,8 +2,8 @@ import numpy as np
 from scipy import signal
 
 class Signals:
-	''' This class inherits the Signal class. It is used to organize 
-		1 or more signals of different types: square_wave, 
+	''' This class inherits the Signal class. It is used to organize
+		1 or more signals of different types: square_wave,
 		sawtooth_wave, triangle_wave, random_wave.'''
 
 	# You only need to modify the code inside '#'s as shown below.
@@ -16,7 +16,7 @@ class Signals:
 		''' Down below you will create mySignal objects for each signal
 		you need. The syntax for each object is as follows:
 		self.Object1 = Signal(A, F,signal_type, phase)
-		self.Object2 = Signal(A=1, F=0.1, signal_type, phase)            
+		self.Object2 = Signal(A=1, F=0.1, signal_type, phase)
 		...
 		self.ObjectN = Signal(A, F)
 
@@ -24,20 +24,19 @@ class Signals:
 		The parameters also have default values as shown below. This makes
 		creating a myClass simple if the default values are wanted.
 
-		self.handle.append(mySignal()) 
+		self.handle.append(mySignal())
 
-		For a description of each parameter, see the mySignal Class 
+		For a description of each parameter, see the mySignal Class
 		below.
 
 		All mySignal objects need to be appended to the list self.handle '''
 
 	#SECTION 1
 	##################################################################
-		self.handle.append(mySignal(15*np.pi/180,0.05)) # Theta_r
-		self.handle.append(mySignal(15*np.pi/180,0.05)) # Psi_r
+		self.handle.append(mySignal(15*np.pi/180,0.02)) # Theta_r
 	##################################################################
 
-	# This function returns the values of the signal generator as 
+	# This function returns the values of the signal generator as
 	# as a function of time. The order in which the values are returned is
 	# the same order that the mySignal objects were appended to the
 	# list self.handle.
@@ -50,13 +49,13 @@ class Signals:
 
 class mySignal:
 
-	def __init__(self,A = 1,f = 1,signal_type = 'square_wave', phase = 0):      
+	def __init__(self,A = 1,f = 1,signal_type = 'square_wave', phase = 0):
 		self.A = A                  # Amplitude of the signal
 		self.f = f                  # Frequency of the signal, Hz
 		self.phase = phase          # Phase of the signal, Radians
 
 		if signal_type == 'square_wave':
-			self.signal = self.square_wave 
+			self.signal = self.square_wave
 		elif signal_type == 'sawtooth_wave':
 			self.signal = self.sawtooth_wave
 		elif signal_type == 'triangle_wave':

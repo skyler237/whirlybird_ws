@@ -8,8 +8,8 @@ from slider_input import Sliders
 # The Animation.py file is kept in the parent directory,
 # so the parent directory path needs to be added.
 sys.path.append('..')
-from dynamics import Dynamics
-from animation import Animation
+from dynamics import WhirlybirdDynamics
+from animation import WhirlybirdAnimation
 
 def convertForces(input):
 	force = input[0]

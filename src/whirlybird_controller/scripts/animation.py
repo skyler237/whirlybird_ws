@@ -7,7 +7,7 @@ from mpl_toolkits.mplot3d.art3d import Line3DCollection
 import numpy as np
 import param as P
 
-class Animation:
+class WhirlybirdAnimation:
 
 	def __init__(self):
 		self.flagInit=True # Used to indicate initialization
