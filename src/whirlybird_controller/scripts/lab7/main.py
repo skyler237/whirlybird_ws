@@ -15,7 +15,7 @@ from animation import WhirlybirdAnimation
 
 
 t_start = 0.0   # Start time of simulation
-t_end = 20.0    # End time of simulation
+t_end = 100.0    # End time of simulation
 t_Ts = P.Ts     # Simulation time step
 t_elapse = 0.01  # Simulation time elapsed between each iteration
 t_pause = 0.01  # Pause between each iteration
@@ -28,7 +28,7 @@ t_pause = 0.01  # Pause between each iteration
 sig_gen = Signals()                   # Instantiate Signals class
 plotGen = plotGenerator()             # Instantiate plotGenerator class
 ctrl = controllerPD()                 # Instantiate controllerPD class
-simAnimation = WhirlybirdAnimation()  # Instantiate Animate class
+# simAnimation = WhirlybirdAnimation()  # Instantiate Animate class
 dynam = WhirlybirdDynamics()          # Instantiate Dynamics class
 
 t = t_start               # Declare time variable to keep track of simulation time elapsed
@@ -74,10 +74,10 @@ while t < t_end:
 		dynam.propagateDynamics([x*P.km for x in u]) # Propagate the dynamics of the model in time
 		t = round(t +t_Ts,2)                 # Update time elapsed
 
-	plt.figure(simAnimation.fig.number) # Switch current figure to animation figure
-	simAnimation.drawSystem(        # Update animation with current user input
-		dynam.Outputs())
-	plt.pause(0.0001)
+	# plt.figure(simAnimation.fig.number) # Switch current figure to animation figure
+	# simAnimation.drawSystem(        # Update animation with current user input
+	# 	dynam.Outputs())
+	# plt.pause(0.0001)
 
 	# Organizes the new data to be passed to plotGen
 	new_data = [[ref_input[0],states[1]],   # theta_r/theta
@@ -85,9 +85,9 @@ while t < t_end:
 
 	plotGen.updateDataHistory(t, new_data)
 
-	plt.figure(plotGen.fig.number)		# Switch current figure to plotGen figure
-	plotGen.update_plots()              # Update the plot
-	plt.pause(0.0001)
+plt.figure(plotGen.fig.number)		# Switch current figure to plotGen figure
+plotGen.update_plots()              # Update the plot
+plt.pause(0.00000001)
 
 	# time.sleep(t_pause)
 

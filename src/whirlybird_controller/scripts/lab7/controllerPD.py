@@ -42,10 +42,7 @@ class thetaPD_ctrl:
 
       # PD Control to calculate T
       F_r_unsat = self.kp*error - self.kd*thetadot
-
-      F_r_sat = self.saturate(F_r_unsat)
-
-      return F_r_sat
+      return F_r_unsat
 
   def saturate(self,u):
     if abs(u) > self.limit:

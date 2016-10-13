@@ -18,18 +18,24 @@ g = 9.8     # Gravity, m/s**2
 PWM = 0.46
 km = (m1*l1*g-m2*l2*g)/(l1*2*PWM) #
 
+b0 = l1/(m1*l1**2+m2*l2**2+Jy)
+
 # Simulation Parameters
 Ts = 0.01
 
-th_kp = 2.605
-th_kd = 3.473
+th_tr = .6
+th_wn = 2.2/th_tr
+th_zeta = .707
 
-F_max = 1000
+th_kp = th_wn**2/b0
+th_kd = 2*th_zeta*th_wn/b0
+
+F_max = 10
 
 # Initial Conditions
 phi0 = 0.0
 phidot0 = 0.0
-theta0 = 0.0
+theta0 = -15.0*np.pi/180
 thetadot0 = 0.0
 psi0 = 0.0
 psidot0 = 0.0
