@@ -1,10 +1,10 @@
 import time
 import sys
-import numpy as np 
-import matplotlib.pyplot as plt 
-import param as P 
+import numpy as np
+import matplotlib.pyplot as plt
+import param as P
 from signal_generator import Signals
-from sim_plot import plotGenerator 
+from sim_plot import plotGenerator
 from controllerPD import controllerPD
 
 # The Animation.py file is kept in the parent directory,
@@ -28,7 +28,7 @@ dynam = WhirlybirdDynamics()          # Instantiate Dynamics class
 
 t = t_start               # Declare time variable to keep track of simulation time elapsed
 
-# Converts force and torque into the left and 
+# Converts force and torque into the left and
 # right forces produced by the propellers.
 def convertForces(u):
 	F = u[0]         # Force, N
@@ -41,7 +41,7 @@ def convertForces(u):
 	u = saturatePWM([ul,ur])
 	return u
 
-# saturate the PWM to ensure that they are within the 
+# saturate the PWM to ensure that they are within the
 # range 0-1
 def saturatePWM(u):
 	ul = u[0]
@@ -55,23 +55,23 @@ def saturatePWM(u):
 while t < t_end:
 
     # Get referenced inputs from signal generators
-	ref_input = sig_gen.getRefInputs(t) 
+	ref_input = sig_gen.getRefInputs(t)
 
-	# The dynamics of the model will be propagated in time by t_elapse 
+	# The dynamics of the model will be propagated in time by t_elapse
 	# at intervals of t_Ts.
 	t_temp = t +t_elapse
 	while t < t_temp:
-		
+
 		states = dynam.Outputs()             # Get current states
 		u = ctrl.getForces(ref_input,states) # Calculate the forces
-		u = convertForces(u)                 # Convert force and torque to fl and fr		
+		u = convertForces(u)                 # Convert force and torque to fl and fr
 		dynam.propagateDynamics([x*P.km for x in u]) # Propagate the dynamics of the model in time
 		t = round(t +t_Ts,2)                 # Update time elapsed
 
-	# plt.figure(simAnimation.fig.number) # Switch current figure to animation figure
-	# simAnimation.drawWhirlybird(        # Update animation with current user input
-	# 	dynam.Outputs())
-	# plt.pause(0.0001)
+	plt.figure(simAnimation.fig.number) # Switch current figure to animation figure
+	simAnimation.drawSystem(        # Update animation with current user input
+		dynam.Outputs())
+	plt.pause(0.0001)
 
 	# Organizes the new data to be passed to plotGen
 	new_data = [[ref_input[0],states[1]],  # theta_r/theta
@@ -83,17 +83,15 @@ while t < t_end:
 
 	# plt.figure(plotGen.fig.number)		# Switch current figure to plotGen figure
 	# plotGen.update_plots()              # Update the plot
-	# plt.pause(0.0001) 
-	
+	# plt.pause(0.0001)
+
 	# time.sleep(t_pause)
 
 
-plt.figure(plotGen.fig.number)		
+plt.figure(plotGen.fig.number)
 plotGen.update_plots()
 plt.pause(0.001)
 
 # Keeps the program from closing until the user presses a button.
 print('done')
 raw_input()
-
-
