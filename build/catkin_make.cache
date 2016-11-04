@@ -1,2 +1,2 @@
 whirlybird_calibration:whirlybird_controller:whirlybird_hardware:whirlybird_msgs
--DCATKIN_DEVEL_PREFIX=/fsf/sky237/whirlybird_ws/devel -DCMAKE_INSTALL_PREFIX=/fsf/sky237/whirlybird_ws/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/auto/fsf/sky237/whirlybird_ws/devel -DCMAKE_INSTALL_PREFIX=/auto/fsf/sky237/whirlybird_ws/install -G Unix Makefiles

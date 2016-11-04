@@ -1,1 +1,1 @@
-set(ORDERED_PATHS "/fsf/sky237/whirlybird_ws/devel/include")
+set(ORDERED_PATHS "/auto/fsf/sky237/whirlybird_ws/devel/include")

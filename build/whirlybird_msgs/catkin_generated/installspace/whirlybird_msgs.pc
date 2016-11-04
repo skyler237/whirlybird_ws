@@ -1,8 +1,8 @@
-prefix=/fsf/sky237/whirlybird_ws/install
+prefix=/auto/fsf/sky237/whirlybird_ws/install
 
 Name: whirlybird_msgs
 Description: Description of whirlybird_msgs
 Version: 0.0.0
-Cflags: -I/fsf/sky237/whirlybird_ws/install/include
-Libs: -L/fsf/sky237/whirlybird_ws/install/lib 
+Cflags: -I/auto/fsf/sky237/whirlybird_ws/install/include
+Libs: -L/auto/fsf/sky237/whirlybird_ws/install/lib 
 Requires: 

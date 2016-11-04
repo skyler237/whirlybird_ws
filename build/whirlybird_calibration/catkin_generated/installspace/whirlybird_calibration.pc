@@ -1,8 +1,8 @@
-prefix=/fsf/sky237/whirlybird_ws/install
+prefix=/auto/fsf/sky237/whirlybird_ws/install
 
 Name: whirlybird_calibration
 Description: Description of whirlybird_calibration
 Version: 0.0.0
 Cflags: 
-Libs: -L/fsf/sky237/whirlybird_ws/install/lib 
+Libs: -L/auto/fsf/sky237/whirlybird_ws/install/lib 
 Requires: rospy whirlybird_msgs

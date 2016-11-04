@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/whirlybird_msgs_generate_messages_cpp"
-  "/fsf/sky237/whirlybird_ws/devel/include/whirlybird_msgs/Whirlybird.h"
-  "/fsf/sky237/whirlybird_ws/devel/include/whirlybird_msgs/Command.h"
+  "/auto/fsf/sky237/whirlybird_ws/devel/include/whirlybird_msgs/Whirlybird.h"
+  "/auto/fsf/sky237/whirlybird_ws/devel/include/whirlybird_msgs/Command.h"
 )
 
 # Per-language clean rules from dependency scanning.

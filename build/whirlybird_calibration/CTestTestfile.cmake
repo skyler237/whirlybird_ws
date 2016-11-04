@@ -1,5 +1,5 @@
 # CMake generated Testfile for 
-# Source directory: /fsf/sky237/whirlybird_ws/src/whirlybird_calibration
+# Source directory: /auto/fsf/sky237/whirlybird_ws/src/whirlybird_calibration
 # Build directory: /auto/fsf/sky237/whirlybird_ws/build/whirlybird_calibration
 # 
 # This file includes the relevant testing commands required for 

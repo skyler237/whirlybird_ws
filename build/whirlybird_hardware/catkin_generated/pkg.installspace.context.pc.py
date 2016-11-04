@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "whirlybird_hardware"
-PROJECT_SPACE_DIR = "/fsf/sky237/whirlybird_ws/install"
+PROJECT_SPACE_DIR = "/auto/fsf/sky237/whirlybird_ws/install"
 PROJECT_VERSION = "0.0.0"

@@ -1,27 +1,27 @@
 #!/usr/bin/env python
 import rospy
 import numpy as np
-import matplotlib.pyplot as plt 
-import lab11.param as P 
+import matplotlib.pyplot as plt
+import lab10.param as P
 from whirlybird_msgs.msg import Command
 from whirlybird_msgs.msg import Whirlybird
-from signal_generator import Signals
+# from signal_generator import Signals
 from slider_input import Sliders
+from lab10.sim_plot import plotGenerator
 
 # from lab7.controllerPD import controllerPD as ctrl
 # from lab8.controllerPD import controllerPD as ctrl
-# from lab10.controllerPID import controllerPID as ctrl 
-from lab11.controllerSS import controllerSS as ctrl
+from lab10.controllerPD import controllerPD as ctrl
+# from lab11.controllerSS import controllerSS as ctrl
 # from lab12.controllerSSI import controllerSSI as ctrl
 # from lab13.controllerObs import controllerObs as ctrl
 # from lab14.controllerObsD import controllerObsD as ctrl
 
-# If SLIDERS is false, then the input will be generated from 
+# If SLIDERS is false, then the input will be generated from
 # from the signal generators.
 SLIDERS = True
 
-
-# Converts force and torque into the left and 
+# Converts force and torque into the left and
 # right forces produced by the propellers.
 def convertForces(u):
     F = u[0]         # Force, N
@@ -34,7 +34,7 @@ def convertForces(u):
     u = saturatePWM([ul,ur])
     return u
 
-# saturate the PWM to ensure that they are within the 
+# saturate the PWM to ensure that they are within the
 # range 0-1
 def saturatePWM(u):
     ul = u[0]
@@ -64,12 +64,13 @@ def callback(data):
 
     # Get referenced inputs from signal generators or sliders
     ref_input = usr_input.getInputValues() if SLIDERS else usr_input.getRefInputs(sim_time)
+    reference.pitch = ref_input[0]
+    reference.yaw = ref_input[1]
+    ref_input_pub.publish(reference)
+    print("reference_input=%f", ref_input)
+    u = ctrl.getForces(ref_input,states) # Calculate the forces (PWM output)
 
-    u = ctrl.getForces(ref_input,states) # Calculate the forces
-
-    u = convertForces(u)                 # Convert forces to PWM
-
-
+    # u = convertForces(u)                 # Convert forces to PWM
 
     command.left_motor = u[0]
     command.right_motor = u[1]
@@ -91,12 +92,16 @@ if __name__ == '__main__':
 
     # Publisher to topic 'command'
     command_pub = rospy.Publisher('command',Command,queue_size=5)
+    ref_input_pub = rospy.Publisher('input',Whirlybird,queue_size=5)
 
     # Command Message object
     command=Command()
+    reference=Whirlybird()
+
+
 
     # Used to calculate the time between the callback function calls.
-    global prev_time 
+    global prev_time
     prev_time= rospy.Time.now()            # Gets the current time, time
     global sim_time
     sim_time = 0
@@ -106,7 +111,7 @@ if __name__ == '__main__':
         # Keep node alive until ROS is shutdown.
         while not rospy.is_shutdown():
             plt.show(block=True) if SLIDERS else rospy.spin()
-                
+
         # The ROSInterruptException is raised if the program is killed
         # while sleeping with rospy.sleep() or rospy.rate.sleep()
     except rospy.ROSInterruptException:
