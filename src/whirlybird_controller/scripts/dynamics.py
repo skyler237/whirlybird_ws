@@ -25,10 +25,10 @@ class WhirlybirdDynamics:
         k3 = self.Derivatives(self.state + P.Ts/2*k2, u)
         k4 = self.Derivatives(self.state + P.Ts*k3, u)
         self.state += P.Ts/6 * (k1 + 2*k2 + 2*k3 + k4)
-        if self.state[1] > 30*np.pi/180:
-            self.state[1] = 30*np.pi/180
-        if self.state[1] < -30*np.pi/180:
-            self.state[1] = -30*np.pi/180
+        if self.state[1] > P.theta_max*np.pi/180:
+            self.state[1] = P.theta_max*np.pi/180
+        if self.state[1] < -P.theta_max*np.pi/180:
+            self.state[1] = -P.theta_max*np.pi/180
 
 
     # Return the derivatives of the continuous states
