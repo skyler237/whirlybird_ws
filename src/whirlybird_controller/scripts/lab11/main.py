@@ -29,26 +29,26 @@ t = t_start               # Declare time variable to keep track of simulation ti
 
 # Converts force and torque into the left and
 # right forces produced by the propellers.
-def convertForces(u):
-	F = u[0]         # Force, N
-	tau = u[1]       # Torque, Nm
-	# Convert Force and Torque to fl and fr
-	# fl is the force created by the left propeller
-	# fr is the force created by the right propeller
-	ul = 1.0/(P.km*2.0)*(F+tau/P.d)
-	ur = 1.0/(P.km*2.0)*(F-tau/P.d)
-	u = saturatePWM([ul,ur])
-	return u
+# def convertForces(u):
+# 	F = u[0]         # Force, N
+# 	tau = u[1]       # Torque, Nm
+# 	# Convert Force and Torque to fl and fr
+# 	# fl is the force created by the left propeller
+# 	# fr is the force created by the right propeller
+# 	ul = 1.0/(P.km*2.0)*(F+tau/P.d)
+# 	ur = 1.0/(P.km*2.0)*(F-tau/P.d)
+# 	u = saturatePWM([ul,ur])
+# 	return u
 
 # saturate the PWM to ensure that they are within the
 # range 0-1
-def saturatePWM(u):
-	ul = u[0]
-	ur = u[1]
-
-	ul = 1 if ul > 1 else 0 if ul < 0 else ul
-	ur = 1 if ur > 1 else 0 if ur < 0 else ur
-	return [ul,ur]
+# def saturatePWM(u):
+# 	ul = u[0]
+# 	ur = u[1]
+#
+# 	ul = 1 if ul > 1 else 0 if ul < 0 else ul
+# 	ur = 1 if ur > 1 else 0 if ur < 0 else ur
+# 	return [ul,ur]
 
 
 while t < t_end:
@@ -75,7 +75,7 @@ while t < t_end:
 	new_data = [[ref_input[0],states[1]],  # theta_r/theta
 				[states[0]],               # phi
 				[ref_input[1],states[2]],  # psi_r/psi
-			    [u[0],u[1]]]               # u_l,u_r
+			    [u[0], u[1]]]               # u_l,u_r
 
 	plotGen.updateDataHistory(t, new_data)
 

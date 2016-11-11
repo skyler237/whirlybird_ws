@@ -32,12 +32,8 @@ class controllerSS:
       maxPWM = 0.6
       ul = u[0]
       ur = u[1]
-      if ul > 1 or ur > 1 or ul < 0 or ur < 0:
-          isSaturated = True
-      else:
-          isSaturated = False
-      ul = 1 if ul > maxPWM else 0 if ul < 0 else ul
-      ur = 1 if ur > maxPWM else 0 if ur < 0 else ur
+      ul = maxPWM if ul > maxPWM else 0 if ul < 0 else ul
+      ur = maxPWM if ur > maxPWM else 0 if ur < 0 else ur
       return [ul,ur]
 
   def getForces(self,y_r,y):
@@ -88,12 +84,8 @@ class SS_ctrl:
       maxPWM = 0.6
       ul = u[0].item(0)
       ur = u[1].item(0)
-      if ul > 1 or ur > 1 or ul < 0 or ur < 0:
-          isSaturated = True
-      else:
-          isSaturated = False
-      ul = 1 if ul > maxPWM else 0 if ul < 0 else ul
-      ur = 1 if ur > maxPWM else 0 if ur < 0 else ur
+      ul = maxPWM if ul > maxPWM else 0 if ul < 0 else ul
+      ur = maxPWM if ur > maxPWM else 0 if ur < 0 else ur
       return [ul,ur]
 
 
@@ -137,7 +129,7 @@ class SS_ctrl:
       Fl = u[0]*P.km
       Fr = u[1]*P.km
       F_sat = Fr + Fl
-      T_sat = P.d*(Fr-Fl)
+      T_sat = P.d*(Fl-Fr)
 
       if self.ki_lon !=0:
         self.integrator_lon += P.Ts/self.ki_lon*(F_sat-F)

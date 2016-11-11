@@ -77,7 +77,7 @@ class plotGenerator:
                                  'psi'))
         self.handle.append(myPlot(self.ax[1,0],180.0/np.pi,'t(s)', 'deg',
                                  'phi_r/phi'))
-        self.handle.append(myPlot(self.ax[1,1],P.km,'t(s)','Nm','force'))
+        self.handle.append(myPlot(self.ax[1,1],1.0,'t(s)','Nm','force'))
         ####################################################################
 
 
