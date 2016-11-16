@@ -104,7 +104,13 @@ class SS_ctrl:
       self.psidot = a1*self.psidot + a2*(psi-self.psi_d1)
 
       self.integrator_lat += (P.Ts/2.0)*(error_psi+self.error_psi_d1)
+
+
       self.integrator_lon += (P.Ts/2.0)*(error_theta+self.error_theta_d1)
+
+
+
+
 
       self.error_psi_d1 = error_psi
       self.error_theta_d1 = error_theta
@@ -124,16 +130,41 @@ class SS_ctrl:
       # Compute the state feedback controller
       F = P.F0 - self.K_lon*(x_lon - P.x0_lon) - self.ki_lon*self.integrator_lon
       T = P.T0 - self.K_lat*(x_lat - P.x0_lat) - self.ki_lat*self.integrator_lat
+
+      print "K_lat terms"
+      print -self.K_lat
+      print phi
+      print psi
+      print self.phidot
+      print self.psidot
       u = self.convertForces([F,T])
+      print "U:"
+      print u[0]
+      print u[1]
 
       Fl = u[0]*P.km
       Fr = u[1]*P.km
       F_sat = Fr + Fl
       T_sat = P.d*(Fl-Fr)
 
-      if self.ki_lon !=0:
-        self.integrator_lon += P.Ts/self.ki_lon*(F_sat-F)
-      if self.ki_lat !=0:
-        self.integrator_lat += P.Ts/self.ki_lat*(T_sat-T)
+      print "Force:"
+      print F
+      print F_sat
+
+      print "Torque:"
+      print T
+      print T_sat
+
+    #   if self.ki_lon !=0:
+    #     self.integrator_lon += P.Ts/self.ki_lon*(F_sat-F)
+    #   if self.ki_lat !=0:
+    #     integrator_unwind_lat = P.Ts/self.ki_lat*(T_sat-T)
+    #     print "Lat int. unwind:"
+    #     print integrator_unwind_lat
+    #     self.integrator_lat += integrator_unwind_lat
+
+      print "integrators:"
+      print self.integrator_lon
+      print self.integrator_lat
 
       return u

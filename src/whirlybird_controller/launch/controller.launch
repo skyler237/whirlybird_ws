@@ -1,5 +1,5 @@
 <launch>
 
-	<node name="whirlybird_controller" pkg="whirlybird_controller" type="rosMain.py"/>
+	<node name="whirlybird_controller" pkg="whirlybird_controller" type="rosMain.py" output="screen"/>
 
 </launch>
