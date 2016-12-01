@@ -34,19 +34,19 @@ psidot0 = 0.0
 F0 = (m1*l1-m2*l2)*g/l1*np.cos(theta0)
 T0 = 0.0
 
-th_tr = 4.0
+th_tr = 2.5
 th_wn = 2.2/th_tr
 th_zeta = .707
 
-s_tr = 4.0
+s_tr = 1.0
 s_wn = 2.2/s_tr
 s_zeta = .707
 
-p_tr = 3.0
+p_tr = 1.0
 p_wn = 2.2/p_tr
-p_zeta = .8
+p_zeta = .5
 
-integrator_pole_lat = -10
+integrator_pole_lat = -15
 integrator_pole_lon = -10
 
 ####################################################
